@@ -104,7 +104,7 @@
       <span data-i18n="hero.h1a">Le fret voyage,</span><br class="hidden md:block"> <span data-i18n="hero.h1b">vous suivez chaque kilomètre.</span>
     </h1>
     <p class="mt-5 text-dim text-lg leading-relaxed max-w-md" data-i18n="hero.sub">
-      Bouadigital relie chauffeurs, clients et gestion de flotte sur une seule plateforme : lettres de voiture e-CMR, position GPS en direct et devis en quelques secondes.
+      Bouadigital, c'est votre activité de transporteur indépendant sur une seule plateforme : devis, lettre de voiture e-CMR, position GPS en direct et facturation, entre deux trajets.
     </p>
     <div class="mt-8 flex flex-wrap items-center gap-4">
       <a href="#devis" data-i18n="hero.cta1" class="bg-amber text-bg font-medium px-6 py-3 rounded-md hover:brightness-110 transition focus-ring">Obtenir un devis instantané</a>
@@ -159,7 +159,7 @@
   <div class="mt-8 flex gap-2 border-b border-line" role="tablist" aria-label="Espaces Bouadigital">
     <button data-tab="chauffeur" data-i18n="espaces.tabDriver" class="tab-btn px-4 py-2.5 text-sm font-medium border-b-2 border-amber text-ink focus-ring" role="tab" aria-selected="true">App Chauffeur</button>
     <button data-tab="client" data-i18n="espaces.tabClient" class="tab-btn px-4 py-2.5 text-sm font-medium border-b-2 border-transparent text-dim hover:text-ink focus-ring" role="tab" aria-selected="false">Portail Client</button>
-    <button data-tab="admin" data-i18n="espaces.tabAdmin" class="tab-btn px-4 py-2.5 text-sm font-medium border-b-2 border-transparent text-dim hover:text-ink focus-ring" role="tab" aria-selected="false">Espace Admin</button>
+    <button data-tab="admin" data-i18n="espaces.tabAdmin" class="tab-btn px-4 py-2.5 text-sm font-medium border-b-2 border-transparent text-dim hover:text-ink focus-ring" role="tab" aria-selected="false">Mon espace pro</button>
   </div>
 
   <div class="mt-8">
@@ -205,11 +205,11 @@
 
     <div data-panel="admin" class="tabpane hidden grid md:grid-cols-2 gap-8 items-center">
       <div>
-        <h3 class="font-semibold text-lg" data-i18n="admin.title">Toute la flotte, une vue</h3>
-        <p class="text-dim mt-3 leading-relaxed" data-i18n="admin.body">Accès protégé par mot de passe : gestion des commandes, des chauffeurs, des devis reçus et du bourse de fret, avec recherche assistée par IA.</p>
+        <h3 class="font-semibold text-lg" data-i18n="admin.title">Toute votre activité, une vue</h3>
+        <p class="text-dim mt-3 leading-relaxed" data-i18n="admin.body">Accès protégé par mot de passe : vos commandes, vos devis reçus et la bourse de fret pour vos retours, avec recherche assistée par IA.</p>
         <ul class="mt-4 space-y-2 text-sm text-dim">
-          <li data-i18n="admin.li1">Tableau de bord des livraisons en cours</li>
-          <li data-i18n="admin.li2">Gestion des candidatures et du recrutement</li>
+          <li data-i18n="admin.li1">Tableau de bord de vos livraisons en cours</li>
+          <li data-i18n="admin.li2">Suivi de vos factures et paiements</li>
           <li data-i18n="admin.li3">Historique des devis et export</li>
         </ul>
       </div>
@@ -222,8 +222,8 @@
           <p id="admin-login-error" class="hidden text-xs text-amber"></p>
         </form>
         <div id="admin-stats" class="hidden font-mono text-sm">
-          <p class="text-dim text-xs mb-1" data-i18n="admin.fleetActive">Flotte active</p>
-          <p><span id="admin-truck-count">7</span> <span data-i18n="admin.trucks">camions</span> · <span id="admin-mission-count">12</span> <span data-i18n="admin.missions">missions</span></p>
+          <p class="text-dim text-xs mb-1" data-i18n="admin.fleetActive">Votre activité</p>
+          <p><span id="admin-mission-count">12</span> <span data-i18n="admin.missions">missions ce mois-ci</span></p>
         </div>
       </div>
     </div>
@@ -236,11 +236,11 @@
     <p class="text-dim" data-i18n="ecmr.docTitle">LETTRE DE VOITURE — e-CMR</p>
     <div class="mt-4 h-px bg-line"></div>
     <p class="mt-4 text-dim" data-i18n="ecmr.sender">1. Expéditeur</p>
-    <p>BOUA Trans — Yuncos, Toledo</p>
+    <p>[Votre nom ou raison sociale] — [Ville]</p>
     <p class="mt-3 text-dim" data-i18n="ecmr.recipient">2. Destinataire</p>
     <p>—</p>
     <p class="mt-3 text-dim" data-i18n="ecmr.carrier">16. Transporteur</p>
-    <p>BOUA Trans SL</p>
+    <p>[Votre nom ou raison sociale]</p>
     <p class="mt-3 text-dim" data-i18n="ecmr.signature">23. Signature</p>
     <p class="text-dim" data-i18n="ecmr.pending">en attente</p>
   </div>
@@ -279,7 +279,7 @@
 <!-- KIT DIGITAL COMPLET -->
 <section id="kit" class="max-w-6xl mx-auto px-5 py-16">
   <h2 class="text-2xl font-semibold tracking-tight" data-i18n="kit.title">Un kit digital complet</h2>
-  <p class="text-dim mt-2 max-w-lg" data-i18n="kit.sub">Dix briques qui couvrent la présence en ligne, la relation client et la sécurité de l'entreprise, pas seulement le transport.</p>
+  <p class="text-dim mt-2 max-w-lg" data-i18n="kit.sub">Dix briques qui couvrent la présence en ligne, la relation client et la sécurité de votre activité, pas seulement le transport.</p>
   <div class="mt-8 grid md:grid-cols-2">
     <div class="border-t border-line py-5 pr-8">
       <h3 class="font-medium" data-i18n="kit.item1.title">Présence en ligne</h3>
@@ -298,8 +298,8 @@
       <p class="text-dim text-sm mt-1.5 leading-relaxed" data-i18n="kit.item4.desc">Tableaux de bord de ponctualité, kilométrage et émissions CO₂.</p>
     </div>
     <div class="border-t border-line py-5 pr-8">
-      <h3 class="font-medium" data-i18n="kit.item5.title">Gestion des processus</h3>
-      <p class="text-dim text-sm mt-1.5 leading-relaxed" data-i18n="kit.item5.desc">Attribution automatique des missions au chauffeur le plus proche.</p>
+      <h3 class="font-medium" data-i18n="kit.item5.title">Organisation des trajets</h3>
+      <p class="text-dim text-sm mt-1.5 leading-relaxed" data-i18n="kit.item5.desc">Planification de vos missions et alertes de disponibilité, sans dispatcher.</p>
     </div>
     <div class="border-t border-line py-5 md:pl-8">
       <h3 class="font-medium" data-i18n="kit.item6.title">Facturation électronique</h3>
@@ -374,7 +374,7 @@
 <!-- ANALYTIQUE -->
 <section id="analytique" class="max-w-6xl mx-auto px-5 py-16">
   <h2 class="text-2xl font-semibold tracking-tight" data-i18n="analytique.title">Analytique & pilotage</h2>
-  <p class="text-dim mt-2 max-w-lg" data-i18n="analytique.sub">Les indicateurs de flotte, en un coup d'œil, pour l'espace administrateur.</p>
+  <p class="text-dim mt-2 max-w-lg" data-i18n="analytique.sub">Vos indicateurs d'activité, en un coup d'œil.</p>
   <div class="mt-8 bg-panel border border-line rounded-xl grid grid-cols-2 md:grid-cols-4 divide-x divide-line">
     <div class="p-6">
       <p id="kpi-ontime" class="text-2xl font-mono">96%</p>
@@ -389,8 +389,8 @@
       <p class="text-dim text-xs mt-1" data-i18n="analytique.co2">CO₂ évité (retours groupés)</p>
     </div>
     <div class="p-6">
-      <p id="kpi-occupation" class="text-2xl font-mono">83%</p>
-      <p class="text-dim text-xs mt-1" data-i18n="analytique.occupation">Taux d'occupation flotte</p>
+      <p id="kpi-occupation" class="text-2xl font-mono">18</p>
+      <p class="text-dim text-xs mt-1" data-i18n="analytique.occupation">Jours actifs ce mois</p>
     </div>
   </div>
 </section>
@@ -436,7 +436,7 @@
   </div>
   <div>
     <h2 class="text-2xl font-semibold tracking-tight" data-i18n="messagerie.title">Communications sécurisées</h2>
-    <p class="text-dim mt-3 leading-relaxed max-w-md" data-i18n="messagerie.body">Chauffeur, client et administration échangent sur le même fil, rattaché à l'expédition — rien ne se perd dans les emails ou WhatsApp.</p>
+    <p class="text-dim mt-3 leading-relaxed max-w-md" data-i18n="messagerie.body">Vous et votre client échangez sur le même fil, rattaché à l'expédition — rien ne se perd dans les emails ou WhatsApp.</p>
     <div class="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-xs text-dim font-mono">
       <span data-i18n="messagerie.aes">Chiffrement AES-256</span>
       <span data-i18n="messagerie.mfa">Authentification à deux facteurs</span>
@@ -482,7 +482,7 @@
         <a href="#" class="hover:text-ink transition-colors focus-ring">LinkedIn</a>
         <a href="#" class="hover:text-ink transition-colors focus-ring">WhatsApp</a>
       </div>
-      <p data-i18n="footer.tagline">Bouadigital — module transport & logistique</p>
+      <p data-i18n="footer.tagline">Bouadigital — l'outil du transporteur indépendant</p>
     </div>
   </div>
 </footer>
@@ -496,19 +496,19 @@
     fr: {
       "nav.espaces":"Espaces","nav.kit":"Fonctionnalités","nav.ia":"Assistant IA","nav.fret":"Bourse de fret","nav.suivi":"Suivi GPS","nav.devisNav":"Devis","nav.cta":"Demander un devis","nav.install":"Installer",
       "ios.title":"Installer Bouadigital","ios.pre":"Sur iPhone ou iPad : appuyez sur ","ios.share":"Partager","ios.mid":" en bas de Safari, puis choisissez ","ios.addHome":"« Sur l'écran d'accueil »","ios.end":".","ios.close":"Compris",
-      "hero.h1a":"Le fret voyage,","hero.h1b":"vous suivez chaque kilomètre.","hero.sub":"Bouadigital relie chauffeurs, clients et gestion de flotte sur une seule plateforme : lettres de voiture e-CMR, position GPS en direct et devis en quelques secondes.","hero.cta1":"Obtenir un devis instantané","hero.cta2":"Découvrir les espaces","hero.tagline":"Toledo · Madrid · Bamako — Europe ↔ Afrique de l'Ouest","hero.status":"En route","hero.labelPosition":"Position","hero.labelEta":"ETA","hero.labelDriver":"Chauffeur","hero.labelTrailer":"Remorque","hero.liveFlag":"· données en direct",
-      "espaces.title":"Trois espaces, une seule plateforme","espaces.sub":"Chaque profil retrouve exactement ce dont il a besoin, rien de plus.","espaces.tabDriver":"App Chauffeur","espaces.tabClient":"Portail Client","espaces.tabAdmin":"Espace Admin",
+      "hero.h1a":"Le fret voyage,","hero.h1b":"vous suivez chaque kilomètre.","hero.sub":"Bouadigital, c'est votre activité de transporteur indépendant sur une seule plateforme : devis, lettre de voiture e-CMR, position GPS en direct et facturation, entre deux trajets.","hero.cta1":"Obtenir un devis instantané","hero.cta2":"Découvrir les espaces","hero.tagline":"Toledo · Madrid · Bamako — Europe ↔ Afrique de l'Ouest","hero.status":"En route","hero.labelPosition":"Position","hero.labelEta":"ETA","hero.labelDriver":"Chauffeur","hero.labelTrailer":"Remorque","hero.liveFlag":"· données en direct",
+      "espaces.title":"Trois espaces, une seule plateforme","espaces.sub":"Chaque profil retrouve exactement ce dont il a besoin, rien de plus.","espaces.tabDriver":"App Chauffeur","espaces.tabClient":"Portail Client","espaces.tabAdmin":"Mon espace pro",
       "driver.title":"Missions et e-CMR en poche","driver.body":"L'application Android affiche la mission en cours, le trajet, et permet de remplir la lettre de voiture directement depuis le camion, même hors connexion.","driver.li1":"Feuille de route et documents de fret","driver.li2":"Signature client et photo de livraison","driver.li3":"Partage automatique de la position GPS","driver.missionActive":"Mission active","driver.nextStep":"Prochaine étape","driver.customs":"Douane Algésiras · 06:30","driver.weight":"18,4 t · Remorque frigo",
       "client.title":"Suivre son colis, sans appeler personne","client.body":"Le client entre son numéro de suivi et voit la position en direct, l'historique du trajet et peut télécharger sa lettre de voiture dès qu'elle est signée.","client.li1":"Suivi GPS en temps réel","client.li2":"e-CMR téléchargeable en PDF","client.li3":"Notifications par email aux étapes clés","client.trackingLabel":"Suivi expédition","client.statusOnTime":"En route — à l'heure","client.lastUpdate":"Dernière mise à jour","client.minutesAgo":"Il y a 6 min",
-      "admin.title":"Toute la flotte, une vue","admin.body":"Accès protégé par mot de passe : gestion des commandes, des chauffeurs, des devis reçus et du bourse de fret, avec recherche assistée par IA.","admin.li1":"Tableau de bord des livraisons en cours","admin.li2":"Gestion des candidatures et du recrutement","admin.li3":"Historique des devis et export","admin.secureAccess":"Accès sécurisé","admin.emailPh":"Email","admin.passwordPh":"Mot de passe","admin.login":"Se connecter","admin.loginError":"Connexion refusée — vérifiez vos identifiants.","admin.fleetActive":"Flotte active","admin.trucks":"camions","admin.missions":"missions",
+      "admin.title":"Toute votre activité, une vue","admin.body":"Accès protégé par mot de passe : vos commandes, vos devis reçus et la bourse de fret pour vos retours, avec recherche assistée par IA.","admin.li1":"Tableau de bord de vos livraisons en cours","admin.li2":"Suivi de vos factures et paiements","admin.li3":"Historique des devis et export","admin.secureAccess":"Accès sécurisé","admin.emailPh":"Email","admin.passwordPh":"Mot de passe","admin.login":"Se connecter","admin.loginError":"Connexion refusée — vérifiez vos identifiants.","admin.fleetActive":"Votre activité","admin.missions":"missions ce mois-ci",
       "ecmr.docTitle":"LETTRE DE VOITURE — e-CMR","ecmr.sender":"1. Expéditeur","ecmr.recipient":"2. Destinataire","ecmr.carrier":"16. Transporteur","ecmr.signature":"23. Signature","ecmr.pending":"en attente","ecmr.title":"e-CMR, vierge ou remplie","ecmr.body":"Générez une lettre de voiture vierge à imprimer, ou laissez le chauffeur la remplir depuis l'application : elle est ensuite disponible au client en un clic, sans papier perdu.","ecmr.dl":"Télécharger un e-CMR vierge","ecmr.view":"Voir un e-CMR rempli",
       "suivi.title":"Géolocalisation en temps réel","suivi.body":"Chaque camion transmet sa position pendant le trajet ; client et administrateur voient la même carte, au même moment.",
-      "kit.title":"Un kit digital complet","kit.sub":"Dix briques qui couvrent la présence en ligne, la relation client et la sécurité de l'entreprise, pas seulement le transport.",
+      "kit.title":"Un kit digital complet","kit.sub":"Dix briques qui couvrent la présence en ligne, la relation client et la sécurité de votre activité, pas seulement le transport.",
       "kit.item1.title":"Présence en ligne","kit.item1.desc":"Cette plateforme elle-même : vitrine, portail client et référencement.",
       "kit.item2.title":"Réseaux sociaux","kit.item2.desc":"Publication automatique des trajets disponibles et des offres de fret.",
       "kit.item3.title":"Gestion clients (CRM)","kit.item3.desc":"Historique des expéditions, préférences et relances de devis automatiques.",
       "kit.item4.title":"Business Intelligence","kit.item4.desc":"Tableaux de bord de ponctualité, kilométrage et émissions CO₂.",
-      "kit.item5.title":"Gestion des processus","kit.item5.desc":"Attribution automatique des missions au chauffeur le plus proche.",
+      "kit.item5.title":"Organisation des trajets","kit.item5.desc":"Planification de vos missions et alertes de disponibilité, sans dispatcher.",
       "kit.item6.title":"Facturation électronique","kit.item6.desc":"Devis, factures et suivi de paiement générés sans ressaisie.",
       "kit.item7.title":"Communications sécurisées","kit.item7.desc":"Messagerie chiffrée entre chauffeur, client et administration.",
       "kit.item8.title":"Cybersécurité","kit.item8.desc":"Accès protégé, sauvegardes régulières, conformité RGPD.",
@@ -516,29 +516,29 @@
       "kit.item10.title":"Assistant IA","kit.item10.desc":"Optimisation d'itinéraire, prévision d'ETA et recherche en langage naturel.",
       "ia.assistantLabel":"Assistant Bouadigital","ia.msg1":"Vous · trouve-moi un retour Bamako → Toledo cette semaine","ia.msg2":"IA · 2 offres compatibles, 14t et 9t, départ mercredi","ia.msg3":"Vous · quel est l'ETA du CMR-2026-08841 ?","ia.msg4":"IA · Arrivée estimée dans 2j 04h, trafic Algésiras inclus","ia.title":"Un assistant qui connaît la route","ia.body":"L'IA lit les positions en direct et l'historique des trajets pour répondre en langage naturel, sans passer par un formulaire de recherche.","ia.li1":"Optimisation d'itinéraire selon trafic et douane","ia.li2":"Prévision d'ETA recalculée en continu","ia.li3":"Recherche de fret disponible en une phrase",
       "fret.title":"Bourse de fret","fret.sub":"Les retours à vide deviennent des trajets rentables, partagés entre transporteurs partenaires.","fret.colTrajet":"Trajet","fret.colPoids":"Poids","fret.colDepart":"Départ","fret.colPrix":"Prix","fret.liveFlag":"· offres mises à jour en direct",
-      "analytique.title":"Analytique & pilotage","analytique.sub":"Les indicateurs de flotte, en un coup d'œil, pour l'espace administrateur.","analytique.ontime":"Livraisons à l'heure","analytique.km":"Km ce mois-ci","analytique.co2":"CO₂ évité (retours groupés)","analytique.occupation":"Taux d'occupation flotte",
+      "analytique.title":"Analytique & pilotage","analytique.sub":"Vos indicateurs d'activité, en un coup d'œil.","analytique.ontime":"Livraisons à l'heure","analytique.km":"Km ce mois-ci","analytique.co2":"CO₂ évité (retours groupés)","analytique.occupation":"Jours actifs ce mois",
       "facturation.docLabel":"FACTURE — BT-2026-0412","facturation.transport":"Transport Toledo → Bamako","facturation.weightRef":"18,4 t · e-CMR CMR-2026-08841","facturation.total":"Total","facturation.status":"Statut","facturation.paid":"Payée","facturation.title":"Facturation électronique","facturation.body":"Chaque mission livrée génère automatiquement sa facture, reliée au devis et à l'e-CMR signé. Export comptable en un clic.","facturation.li1":"Génération automatique à la livraison","facturation.li2":"Suivi des paiements en attente","facturation.li3":"Export compatible avec la comptabilité",
-      "messagerie.threadLabel":"CMR-2026-08841 · discussion","messagerie.demo1":"Admin · document e-CMR signé, envoi en cours","messagerie.demo2":"Client · merci, je surveille le suivi GPS","messagerie.placeholder":"Écrire un message…","messagerie.send":"Envoyer","messagerie.title":"Communications sécurisées","messagerie.body":"Chauffeur, client et administration échangent sur le même fil, rattaché à l'expédition — rien ne se perd dans les emails ou WhatsApp.","messagerie.aes":"Chiffrement AES-256","messagerie.mfa":"Authentification à deux facteurs","messagerie.backup":"Sauvegardes quotidiennes","messagerie.gdpr":"Conforme RGPD",
+      "messagerie.threadLabel":"CMR-2026-08841 · discussion","messagerie.demo1":"Admin · document e-CMR signé, envoi en cours","messagerie.demo2":"Client · merci, je surveille le suivi GPS","messagerie.placeholder":"Écrire un message…","messagerie.send":"Envoyer","messagerie.title":"Communications sécurisées","messagerie.body":"Vous et votre client échangez sur le même fil, rattaché à l'expédition — rien ne se perd dans les emails ou WhatsApp.","messagerie.aes":"Chiffrement AES-256","messagerie.mfa":"Authentification à deux facteurs","messagerie.backup":"Sauvegardes quotidiennes","messagerie.gdpr":"Conforme RGPD",
       "devis.title":"Un devis en moins de deux minutes","devis.body":"Trajet, poids, type de marchandise : le tarif s'affiche immédiatement, sans appel ni attente.","devis.mailto":"ou écrire directement à bouayuncos@gmail.com","devis.phDepart":"Ville de départ","devis.phArrivee":"Ville d'arrivée","devis.phPoids":"Poids (t)","devis.phMarchandise":"Marchandise","devis.phContact":"Votre email","devis.submit":"Démarrer un devis","devis.confirm":"Demande envoyée — réponse sous 24h.",
-      "footer.tagline":"Bouadigital — module transport & logistique",
+      "footer.tagline":"Bouadigital — l'outil du transporteur indépendant",
       "suivi.algeciras":"Algésiras"
     },
     es: {
       "nav.espaces":"Espacios","nav.kit":"Funciones","nav.ia":"Asistente IA","nav.fret":"Bolsa de carga","nav.suivi":"Seguimiento GPS","nav.devisNav":"Presupuesto","nav.cta":"Pedir presupuesto","nav.install":"Instalar",
       "ios.title":"Instalar Bouadigital","ios.pre":"En iPhone o iPad: toca ","ios.share":"Compartir","ios.mid":" en la parte inferior de Safari y elige ","ios.addHome":"«Añadir a pantalla de inicio»","ios.end":".","ios.close":"Entendido",
       "hero.h1a":"La carga viaja,","hero.h1b":"tú sigues cada kilómetro.","hero.sub":"Bouadigital conecta conductores, clientes y gestión de flota en una sola plataforma: cartas de porte e-CMR, posición GPS en directo y presupuesto en segundos.","hero.cta1":"Solicitar un presupuesto instantáneo","hero.cta2":"Descubrir los espacios","hero.tagline":"Toledo · Madrid · Bamako — Europa ↔ África Occidental","hero.status":"En ruta","hero.labelPosition":"Posición","hero.labelEta":"ETA","hero.labelDriver":"Conductor","hero.labelTrailer":"Remolque","hero.liveFlag":"· datos en directo",
-      "espaces.title":"Tres espacios, una sola plataforma","espaces.sub":"Cada perfil encuentra exactamente lo que necesita, nada más.","espaces.tabDriver":"App Conductor","espaces.tabClient":"Portal Cliente","espaces.tabAdmin":"Espacio Admin",
+      "espaces.title":"Tres espacios, una sola plataforma","espaces.sub":"Cada perfil encuentra exactamente lo que necesita, nada más.","espaces.tabDriver":"App Conductor","espaces.tabClient":"Portal Cliente","espaces.tabAdmin":"Mi espacio pro",
       "driver.title":"Misiones y e-CMR en el bolsillo","driver.body":"La aplicación Android muestra la misión en curso, la ruta, y permite rellenar la carta de porte directamente desde el camión, incluso sin conexión.","driver.li1":"Hoja de ruta y documentos de carga","driver.li2":"Firma del cliente y foto de entrega","driver.li3":"Compartición automática de la posición GPS","driver.missionActive":"Misión activa","driver.nextStep":"Próxima etapa","driver.customs":"Aduana Algeciras · 06:30","driver.weight":"18,4 t · Remolque frigorífico",
       "client.title":"Seguir su envío sin llamar a nadie","client.body":"El cliente introduce su número de seguimiento y ve la posición en directo, el historial del trayecto y puede descargar su carta de porte en cuanto esté firmada.","client.li1":"Seguimiento GPS en tiempo real","client.li2":"e-CMR descargable en PDF","client.li3":"Notificaciones por email en cada etapa clave","client.trackingLabel":"Seguimiento de envío","client.statusOnTime":"En ruta — a tiempo","client.lastUpdate":"Última actualización","client.minutesAgo":"Hace 6 min",
-      "admin.title":"Toda la flota, una sola vista","admin.body":"Acceso protegido por contraseña: gestión de pedidos, conductores, presupuestos recibidos y bolsa de carga, con búsqueda asistida por IA.","admin.li1":"Panel de entregas en curso","admin.li2":"Gestión de candidaturas y contratación","admin.li3":"Historial de presupuestos y exportación","admin.secureAccess":"Acceso seguro","admin.emailPh":"Correo electrónico","admin.passwordPh":"Contraseña","admin.login":"Iniciar sesión","admin.loginError":"Acceso denegado — verifica tus credenciales.","admin.fleetActive":"Flota activa","admin.trucks":"camiones","admin.missions":"misiones",
+      "admin.title":"Toda tu actividad, una sola vista","admin.body":"Acceso protegido por contraseña: tus pedidos, tus presupuestos recibidos y la bolsa de carga para tus retornos, con búsqueda asistida por IA.","admin.li1":"Panel de tus entregas en curso","admin.li2":"Seguimiento de tus facturas y pagos","admin.li3":"Historial de presupuestos y exportación","admin.secureAccess":"Acceso seguro","admin.emailPh":"Correo electrónico","admin.passwordPh":"Contraseña","admin.login":"Iniciar sesión","admin.loginError":"Acceso denegado — verifica tus credenciales.","admin.fleetActive":"Tu actividad","admin.missions":"misiones este mes",
       "ecmr.docTitle":"CARTA DE PORTE — e-CMR","ecmr.sender":"1. Remitente","ecmr.recipient":"2. Destinatario","ecmr.carrier":"16. Transportista","ecmr.signature":"23. Firma","ecmr.pending":"pendiente","ecmr.title":"e-CMR, en blanco o cumplimentado","ecmr.body":"Genera una carta de porte en blanco para imprimir, o deja que el conductor la rellene desde la aplicación: queda disponible para el cliente en un clic, sin papeles perdidos.","ecmr.dl":"Descargar un e-CMR en blanco","ecmr.view":"Ver un e-CMR cumplimentado",
       "suivi.title":"Geolocalización en tiempo real","suivi.body":"Cada camión transmite su posición durante el trayecto; el cliente y el administrador ven el mismo mapa, en el mismo momento.",
-      "kit.title":"Un kit digital completo","kit.sub":"Diez pilares que cubren la presencia online, la relación con el cliente y la seguridad de la empresa, no solo el transporte.",
+      "kit.title":"Un kit digital completo","kit.sub":"Diez pilares que cubren la presencia online, la relación con el cliente y la seguridad de tu actividad, no solo el transporte.",
       "kit.item1.title":"Presencia online","kit.item1.desc":"Esta misma plataforma: escaparate, portal de clientes y posicionamiento.",
       "kit.item2.title":"Redes sociales","kit.item2.desc":"Publicación automática de rutas disponibles y ofertas de carga.",
       "kit.item3.title":"Gestión de clientes (CRM)","kit.item3.desc":"Historial de envíos, preferencias y seguimiento automático de presupuestos.",
       "kit.item4.title":"Business Intelligence","kit.item4.desc":"Paneles de puntualidad, kilometraje y emisiones de CO₂.",
-      "kit.item5.title":"Gestión de procesos","kit.item5.desc":"Asignación automática de misiones al conductor más cercano.",
+      "kit.item5.title":"Organización de rutas","kit.item5.desc":"Planificación de tus misiones y alertas de disponibilidad, sin despachador.",
       "kit.item6.title":"Facturación electrónica","kit.item6.desc":"Presupuestos, facturas y seguimiento de pagos generados sin doble introducción.",
       "kit.item7.title":"Comunicaciones seguras","kit.item7.desc":"Mensajería cifrada entre conductor, cliente y administración.",
       "kit.item8.title":"Ciberseguridad","kit.item8.desc":"Acceso protegido, copias de seguridad regulares, cumplimiento RGPD.",
@@ -546,29 +546,29 @@
       "kit.item10.title":"Asistente IA","kit.item10.desc":"Optimización de rutas, previsión de ETA y búsqueda en lenguaje natural.",
       "ia.assistantLabel":"Asistente Bouadigital","ia.msg1":"Tú · búscame un retorno Bamako → Toledo esta semana","ia.msg2":"IA · 2 ofertas compatibles, 14t y 9t, salida el miércoles","ia.msg3":"Tú · ¿cuál es el ETA del CMR-2026-08841?","ia.msg4":"IA · Llegada estimada en 2d 04h, tráfico de Algeciras incluido","ia.title":"Un asistente que conoce la ruta","ia.body":"La IA lee las posiciones en directo y el historial de rutas para responder en lenguaje natural, sin pasar por un formulario de búsqueda.","ia.li1":"Optimización de ruta según tráfico y aduana","ia.li2":"Previsión de ETA recalculada continuamente","ia.li3":"Búsqueda de carga disponible en una frase",
       "fret.title":"Bolsa de carga","fret.sub":"Los retornos en vacío se convierten en trayectos rentables, compartidos entre transportistas asociados.","fret.colTrajet":"Ruta","fret.colPoids":"Peso","fret.colDepart":"Salida","fret.colPrix":"Precio","fret.liveFlag":"· ofertas actualizadas en directo",
-      "analytique.title":"Analítica y gestión","analytique.sub":"Los indicadores de flota, de un vistazo, para el espacio administrador.","analytique.ontime":"Entregas a tiempo","analytique.km":"Km este mes","analytique.co2":"CO₂ evitado (retornos agrupados)","analytique.occupation":"Tasa de ocupación de flota",
+      "analytique.title":"Analítica y gestión","analytique.sub":"Tus indicadores de actividad, de un vistazo.","analytique.ontime":"Entregas a tiempo","analytique.km":"Km este mes","analytique.co2":"CO₂ evitado (retornos agrupados)","analytique.occupation":"Días activos este mes",
       "facturation.docLabel":"FACTURA — BT-2026-0412","facturation.transport":"Transporte Toledo → Bamako","facturation.weightRef":"18,4 t · e-CMR CMR-2026-08841","facturation.total":"Total","facturation.status":"Estado","facturation.paid":"Pagada","facturation.title":"Facturación electrónica","facturation.body":"Cada misión entregada genera automáticamente su factura, vinculada al presupuesto y al e-CMR firmado. Exportación contable en un clic.","facturation.li1":"Generación automática al entregar","facturation.li2":"Seguimiento de pagos pendientes","facturation.li3":"Exportación compatible con contabilidad",
-      "messagerie.threadLabel":"CMR-2026-08841 · conversación","messagerie.demo1":"Admin · documento e-CMR firmado, envío en curso","messagerie.demo2":"Cliente · gracias, estaré pendiente del seguimiento GPS","messagerie.placeholder":"Escribir un mensaje…","messagerie.send":"Enviar","messagerie.title":"Comunicaciones seguras","messagerie.body":"Conductor, cliente y administración conversan en el mismo hilo, vinculado al envío — nada se pierde entre emails o WhatsApp.","messagerie.aes":"Cifrado AES-256","messagerie.mfa":"Autenticación de dos factores","messagerie.backup":"Copias de seguridad diarias","messagerie.gdpr":"Conforme al RGPD",
+      "messagerie.threadLabel":"CMR-2026-08841 · conversación","messagerie.demo1":"Admin · documento e-CMR firmado, envío en curso","messagerie.demo2":"Cliente · gracias, estaré pendiente del seguimiento GPS","messagerie.placeholder":"Escribir un mensaje…","messagerie.send":"Enviar","messagerie.title":"Comunicaciones seguras","messagerie.body":"Tú y tu cliente conversáis en el mismo hilo, vinculado al envío — nada se pierde entre emails o WhatsApp.","messagerie.aes":"Cifrado AES-256","messagerie.mfa":"Autenticación de dos factores","messagerie.backup":"Copias de seguridad diarias","messagerie.gdpr":"Conforme al RGPD",
       "devis.title":"Un presupuesto en menos de dos minutos","devis.body":"Ruta, peso, tipo de mercancía: la tarifa aparece al instante, sin llamadas ni esperas.","devis.mailto":"o escribir directamente a bouayuncos@gmail.com","devis.phDepart":"Ciudad de salida","devis.phArrivee":"Ciudad de llegada","devis.phPoids":"Peso (t)","devis.phMarchandise":"Mercancía","devis.phContact":"Tu correo electrónico","devis.submit":"Solicitar presupuesto","devis.confirm":"Solicitud enviada — respuesta en 24h.",
-      "footer.tagline":"Bouadigital — módulo transporte y logística",
+      "footer.tagline":"Bouadigital — la herramienta del transportista autónomo",
       "suivi.algeciras":"Algeciras"
     },
     en: {
       "nav.espaces":"Spaces","nav.kit":"Features","nav.ia":"AI Assistant","nav.fret":"Freight exchange","nav.suivi":"GPS tracking","nav.devisNav":"Quote","nav.cta":"Request a quote","nav.install":"Install",
       "ios.title":"Install Bouadigital","ios.pre":"On iPhone or iPad: tap ","ios.share":"Share","ios.mid":" at the bottom of Safari, then choose ","ios.addHome":"“Add to Home Screen”","ios.end":".","ios.close":"Got it",
       "hero.h1a":"Freight moves,","hero.h1b":"you track every kilometre.","hero.sub":"Bouadigital connects drivers, clients and fleet management on a single platform: e-CMR waybills, live GPS position and quotes in seconds.","hero.cta1":"Get an instant quote","hero.cta2":"Explore the spaces","hero.tagline":"Toledo · Madrid · Bamako — Europe ↔ West Africa","hero.status":"In transit","hero.labelPosition":"Position","hero.labelEta":"ETA","hero.labelDriver":"Driver","hero.labelTrailer":"Trailer","hero.liveFlag":"· live data",
-      "espaces.title":"Three spaces, one platform","espaces.sub":"Each profile gets exactly what it needs, nothing more.","espaces.tabDriver":"Driver App","espaces.tabClient":"Client Portal","espaces.tabAdmin":"Admin Space",
+      "espaces.title":"Three spaces, one platform","espaces.sub":"Each profile gets exactly what it needs, nothing more.","espaces.tabDriver":"Driver App","espaces.tabClient":"Client Portal","espaces.tabAdmin":"My business space",
       "driver.title":"Missions and e-CMR in your pocket","driver.body":"The Android app shows the current mission and route, and lets you fill in the waybill directly from the truck, even offline.","driver.li1":"Route sheet and freight documents","driver.li2":"Client signature and delivery photo","driver.li3":"Automatic GPS position sharing","driver.missionActive":"Active mission","driver.nextStep":"Next stop","driver.customs":"Algeciras customs · 06:30","driver.weight":"18.4 t · Refrigerated trailer",
       "client.title":"Track a shipment without calling anyone","client.body":"The client enters their tracking number and sees the live position, route history, and can download the waybill as soon as it's signed.","client.li1":"Real-time GPS tracking","client.li2":"Downloadable e-CMR (PDF)","client.li3":"Email notifications at key milestones","client.trackingLabel":"Shipment tracking","client.statusOnTime":"In transit — on time","client.lastUpdate":"Last update","client.minutesAgo":"6 min ago",
-      "admin.title":"The whole fleet, one view","admin.body":"Password-protected access: manage orders, drivers, incoming quotes and the freight exchange, with AI-assisted search.","admin.li1":"Dashboard of ongoing deliveries","admin.li2":"Applications and recruitment management","admin.li3":"Quote history and export","admin.secureAccess":"Secure access","admin.emailPh":"Email","admin.passwordPh":"Password","admin.login":"Log in","admin.loginError":"Login failed — check your credentials.","admin.fleetActive":"Active fleet","admin.trucks":"trucks","admin.missions":"missions",
+      "admin.title":"Your whole business, one view","admin.body":"Password-protected access: your orders, your incoming quotes and the freight exchange for return loads, with AI-assisted search.","admin.li1":"Dashboard of your ongoing deliveries","admin.li2":"Tracking of your invoices and payments","admin.li3":"Quote history and export","admin.secureAccess":"Secure access","admin.emailPh":"Email","admin.passwordPh":"Password","admin.login":"Log in","admin.loginError":"Login failed — check your credentials.","admin.fleetActive":"Your activity","admin.missions":"missions this month",
       "ecmr.docTitle":"WAYBILL — e-CMR","ecmr.sender":"1. Sender","ecmr.recipient":"2. Consignee","ecmr.carrier":"16. Carrier","ecmr.signature":"23. Signature","ecmr.pending":"pending","ecmr.title":"e-CMR, blank or completed","ecmr.body":"Generate a blank waybill to print, or let the driver fill it in from the app: it's then available to the client in one click, with no lost paperwork.","ecmr.dl":"Download a blank e-CMR","ecmr.view":"View a completed e-CMR",
       "suivi.title":"Real-time geolocation","suivi.body":"Every truck transmits its position along the route; client and administrator see the same map, at the same time.",
-      "kit.title":"A complete digital kit","kit.sub":"Ten building blocks covering online presence, customer relations and company security — not just transport.",
+      "kit.title":"A complete digital kit","kit.sub":"Ten building blocks covering online presence, customer relations and the security of your business — not just transport.",
       "kit.item1.title":"Online presence","kit.item1.desc":"This platform itself: showcase, client portal and search visibility.",
       "kit.item2.title":"Social media","kit.item2.desc":"Automatic posting of available routes and freight offers.",
       "kit.item3.title":"Client management (CRM)","kit.item3.desc":"Shipment history, preferences and automatic quote follow-ups.",
       "kit.item4.title":"Business Intelligence","kit.item4.desc":"Dashboards for punctuality, mileage and CO₂ emissions.",
-      "kit.item5.title":"Process management","kit.item5.desc":"Automatic mission assignment to the nearest driver.",
+      "kit.item5.title":"Trip organisation","kit.item5.desc":"Planning your missions and availability alerts, no dispatcher needed.",
       "kit.item6.title":"Electronic invoicing","kit.item6.desc":"Quotes, invoices and payment tracking generated without re-entry.",
       "kit.item7.title":"Secure communications","kit.item7.desc":"Encrypted messaging between driver, client and admin.",
       "kit.item8.title":"Cybersecurity","kit.item8.desc":"Protected access, regular backups, GDPR compliance.",
@@ -576,11 +576,11 @@
       "kit.item10.title":"AI Assistant","kit.item10.desc":"Route optimisation, ETA forecasting and natural-language search.",
       "ia.assistantLabel":"Bouadigital Assistant","ia.msg1":"You · find me a return load Bamako → Toledo this week","ia.msg2":"AI · 2 matching offers, 14t and 9t, departing Wednesday","ia.msg3":"You · what's the ETA for CMR-2026-08841?","ia.msg4":"AI · Estimated arrival in 2d 04h, including Algeciras traffic","ia.title":"An assistant that knows the road","ia.body":"The AI reads live positions and route history to answer in natural language, no search form required.","ia.li1":"Route optimisation based on traffic and customs","ia.li2":"Continuously recalculated ETA forecast","ia.li3":"Available freight search in one sentence",
       "fret.title":"Freight exchange","fret.sub":"Empty return trips become profitable routes, shared between partner carriers.","fret.colTrajet":"Route","fret.colPoids":"Weight","fret.colDepart":"Departure","fret.colPrix":"Price","fret.liveFlag":"· offers updated live",
-      "analytique.title":"Analytics & fleet control","analytique.sub":"Fleet indicators, at a glance, for the admin space.","analytique.ontime":"On-time deliveries","analytique.km":"Km this month","analytique.co2":"CO₂ saved (grouped returns)","analytique.occupation":"Fleet utilisation rate",
+      "analytique.title":"Analytics & performance","analytique.sub":"Your activity indicators, at a glance.","analytique.ontime":"On-time deliveries","analytique.km":"Km this month","analytique.co2":"CO₂ saved (grouped returns)","analytique.occupation":"Active days this month",
       "facturation.docLabel":"INVOICE — BT-2026-0412","facturation.transport":"Transport Toledo → Bamako","facturation.weightRef":"18.4 t · e-CMR CMR-2026-08841","facturation.total":"Total","facturation.status":"Status","facturation.paid":"Paid","facturation.title":"Electronic invoicing","facturation.body":"Every completed mission automatically generates its invoice, linked to the quote and the signed e-CMR. One-click accounting export.","facturation.li1":"Automatic generation on delivery","facturation.li2":"Tracking of pending payments","facturation.li3":"Export compatible with accounting software",
-      "messagerie.threadLabel":"CMR-2026-08841 · thread","messagerie.demo1":"Admin · e-CMR document signed, sending now","messagerie.demo2":"Client · thanks, I'll keep an eye on GPS tracking","messagerie.placeholder":"Write a message…","messagerie.send":"Send","messagerie.title":"Secure communications","messagerie.body":"Driver, client and admin exchange on the same thread, tied to the shipment — nothing gets lost in emails or WhatsApp.","messagerie.aes":"AES-256 encryption","messagerie.mfa":"Two-factor authentication","messagerie.backup":"Daily backups","messagerie.gdpr":"GDPR compliant",
+      "messagerie.threadLabel":"CMR-2026-08841 · thread","messagerie.demo1":"Admin · e-CMR document signed, sending now","messagerie.demo2":"Client · thanks, I'll keep an eye on GPS tracking","messagerie.placeholder":"Write a message…","messagerie.send":"Send","messagerie.title":"Secure communications","messagerie.body":"You and your client exchange on the same thread, tied to the shipment — nothing gets lost in emails or WhatsApp.","messagerie.aes":"AES-256 encryption","messagerie.mfa":"Two-factor authentication","messagerie.backup":"Daily backups","messagerie.gdpr":"GDPR compliant",
       "devis.title":"A quote in under two minutes","devis.body":"Route, weight, cargo type: the rate appears instantly, no calls or waiting.","devis.mailto":"or email directly at bouayuncos@gmail.com","devis.phDepart":"Departure city","devis.phArrivee":"Destination city","devis.phPoids":"Weight (t)","devis.phMarchandise":"Cargo type","devis.phContact":"Your email","devis.submit":"Start a quote","devis.confirm":"Request sent — reply within 24h.",
-      "footer.tagline":"Bouadigital — transport & logistics module",
+      "footer.tagline":"Bouadigital — the independent trucker's tool",
       "suivi.algeciras":"Algeciras"
     }
   };
@@ -697,10 +697,10 @@
     db.collection("missions").where("status", "==", "active").onSnapshot(snap => {
       document.getElementById("admin-mission-count").textContent = snap.size;
     }, () => {});
-    db.collection("flotte").onSnapshot(snap => {
-      document.getElementById("admin-truck-count").textContent = snap.size;
-      const occ = snap.docs.filter(d => d.data().status === "en_mission").length;
-      if (snap.size) document.getElementById("kpi-occupation").textContent = Math.round((occ / snap.size) * 100) + "%";
+    // Jours actifs ce mois : compte les missions distinctes par date (champ "date" à ajouter sur chaque mission)
+    db.collection("missions").where("month", "==", new Date().toISOString().slice(0, 7)).onSnapshot(snap => {
+      const days = new Set(snap.docs.map(d => d.data().date));
+      if (days.size) document.getElementById("kpi-occupation").textContent = days.size;
     }, () => {});
 
     // Messagerie sécurisée (fil lié à l'expédition)
