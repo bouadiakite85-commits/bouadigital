@@ -1,0 +1,712 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Bouadigital — Transport routier & logistique</title>
+<meta name="description" content="Plateforme Bouadigital : application chauffeur, portail client, espace administrateur, géolocalisation GPS en temps réel, e-CMR et devis instantané." />
+<meta property="og:title" content="Bouadigital - Kit Digital Transport & Logistique" />
+<meta property="og:description" content="Application mobile Android chauffeur, portail web client, espace administrateur sécurisé, géolocalisation GPS en temps réel, e-CMR imprimable et devis instantané." />
+<meta property="og:type" content="website" />
+<meta name="theme-color" content="#0a1330" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Bouadigital" />
+<link rel="manifest" href="manifest.json" />
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='128' fill='%231e3a8a'/%3E%3Cpath d='M120 180h180v140H120zM300 230l70 20v70h-70z' fill='%2360a5fa'/%3E%3Ccircle cx='180' cy='360' r='36' fill='%2310b981'/%3E%3Ccircle cx='340' cy='360' r='36' fill='%2310b981'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          bg: '#0a1330',
+          panel: '#101b3f',
+          line: '#23315c',
+          brand: '#1e3a8a',
+          amber: '#f5a524',
+          emerald: '#10b981',
+          ink: '#eef2ff',
+          dim: '#94a3c4'
+        },
+        fontFamily: {
+          sans: ['Plus Jakarta Sans', 'sans-serif'],
+          mono: ['JetBrains Mono', 'monospace']
+        }
+      }
+    }
+  }
+</script>
+<style>
+  body { background:#0a1330; color:#eef2ff; }
+  .road-line{
+    height:1px;
+    background-image:repeating-linear-gradient(90deg,#334472 0 14px,transparent 14px 26px);
+  }
+  .dot-run{ animation:run 4.5s linear infinite; }
+  @keyframes run{ 0%{ left:2%; } 100%{ left:96%; } }
+  @media (prefers-reduced-motion: reduce){ .dot-run{ animation:none; left:50%; } }
+  .tabpane{ animation:rise .35s ease both; }
+  @keyframes rise{ from{ opacity:0; transform:translateY(6px);} to{ opacity:1; transform:translateY(0);} }
+  .focus-ring:focus-visible{ outline:2px solid #f5a524; outline-offset:3px; }
+</style>
+</head>
+<body class="antialiased font-sans">
+
+<!-- NAV -->
+<header class="sticky top-0 z-40 backdrop-blur bg-bg/80 border-b border-line">
+  <div class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
+    <a href="#" class="flex items-center gap-2 focus-ring">
+      <svg width="30" height="30" viewBox="0 0 512 512"><rect width="512" height="512" rx="128" fill="#1e3a8a"/><path d="M120 180h180v140H120zM300 230l70 20v70h-70z" fill="#60a5fa"/><circle cx="180" cy="360" r="36" fill="#10b981"/><circle cx="340" cy="360" r="36" fill="#10b981"/></svg>
+      <span class="font-semibold tracking-tight text-lg">Bouadigital</span>
+    </a>
+    <nav class="hidden lg:flex items-center gap-6 text-sm text-dim">
+      <a href="#espaces" class="hover:text-ink transition-colors focus-ring">Espaces</a>
+      <a href="#kit" class="hover:text-ink transition-colors focus-ring">Fonctionnalités</a>
+      <a href="#ia" class="hover:text-ink transition-colors focus-ring">Assistant IA</a>
+      <a href="#fret" class="hover:text-ink transition-colors focus-ring">Bourse de fret</a>
+      <a href="#suivi" class="hover:text-ink transition-colors focus-ring">Suivi GPS</a>
+      <a href="#devis" class="hover:text-ink transition-colors focus-ring">Devis</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <button id="lang-toggle" class="hidden sm:inline text-xs font-mono border border-line rounded-md px-2.5 py-1.5 text-dim hover:text-ink transition focus-ring" data-lang="fr">FR / ES</button>
+      <button id="install-btn" class="hidden items-center gap-1.5 text-sm border border-line rounded-md px-3.5 py-2 text-ink hover:border-dim transition focus-ring">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 19h14"/></svg>
+        Installer
+      </button>
+      <a href="#devis" class="text-sm font-medium bg-amber text-bg px-4 py-2 rounded-md hover:brightness-110 transition focus-ring">Demander un devis</a>
+    </div>
+  </div>
+</header>
+
+<!-- iOS install instructions -->
+<div id="ios-install-sheet" class="hidden fixed inset-0 z-50 flex items-end md:items-center justify-center bg-black/60 px-5">
+  <div class="bg-panel border border-line rounded-xl p-6 max-w-sm w-full mb-6 md:mb-0">
+    <p class="font-medium">Installer Bouadigital</p>
+    <p class="text-dim text-sm mt-2 leading-relaxed">Sur iPhone ou iPad : appuyez sur <span class="text-ink">Partager</span> en bas de Safari, puis choisissez <span class="text-ink">« Sur l'écran d'accueil »</span>.</p>
+    <button id="ios-install-close" class="mt-5 text-sm border border-line rounded-md px-4 py-2 hover:border-dim transition focus-ring w-full">Compris</button>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="max-w-6xl mx-auto px-5 pt-16 pb-14 grid md:grid-cols-[1.15fr_1fr] gap-12 items-center">
+  <div>
+    <h1 class="text-4xl md:text-5xl font-semibold leading-[1.08] tracking-tight">
+      Le fret voyage,<br class="hidden md:block"> vous suivez chaque kilomètre.
+    </h1>
+    <p class="mt-5 text-dim text-lg leading-relaxed max-w-md">
+      Bouadigital relie chauffeurs, clients et gestion de flotte sur une seule plateforme : lettres de voiture e-CMR, position GPS en direct et devis en quelques secondes.
+    </p>
+    <div class="mt-8 flex flex-wrap items-center gap-4">
+      <a href="#devis" class="bg-amber text-bg font-medium px-6 py-3 rounded-md hover:brightness-110 transition focus-ring">Obtenir un devis instantané</a>
+      <a href="#espaces" class="text-ink border border-line px-6 py-3 rounded-md hover:border-dim transition focus-ring">Découvrir les espaces</a>
+    </div>
+    <p class="mt-6 text-sm text-dim">Toledo · Madrid · Bamako — Europe ↔ Afrique de l'Ouest</p>
+  </div>
+
+  <!-- live shipment mock -->
+  <div class="bg-panel border border-line rounded-xl p-5">
+    <div class="flex items-center justify-between text-xs text-dim font-mono">
+      <span id="hero-cmr">CMR-2026-08841</span>
+      <span class="inline-flex items-center gap-1.5 text-emerald"><span id="live-dot" class="w-1.5 h-1.5 rounded-full bg-emerald animate-pulse"></span><span id="hero-status">En route</span></span>
+    </div>
+    <div class="mt-6 relative h-8">
+      <div class="road-line absolute left-0 right-0 top-1/2"></div>
+      <div class="absolute top-1/2 -translate-y-1/2 dot-run" style="left:2%">
+        <div class="w-3 h-3 rounded-full bg-amber shadow-[0_0_0_4px_rgba(245,165,36,0.18)]"></div>
+      </div>
+      <span class="absolute left-0 -bottom-1 text-[11px] text-dim">Toledo</span>
+      <span class="absolute right-0 -bottom-1 text-[11px] text-dim">Bamako</span>
+    </div>
+    <div class="mt-6 grid grid-cols-2 gap-4 font-mono text-sm">
+      <div>
+        <p class="text-dim text-xs mb-1">Position</p>
+        <p id="hero-position">40.03N · 3.92W</p>
+      </div>
+      <div>
+        <p class="text-dim text-xs mb-1">ETA</p>
+        <p id="hero-eta">2j 04h</p>
+      </div>
+      <div>
+        <p class="text-dim text-xs mb-1">Chauffeur</p>
+        <p id="hero-driver">M. Traoré</p>
+      </div>
+      <div>
+        <p class="text-dim text-xs mb-1">Remorque</p>
+        <p id="hero-trailer">TL-4471-BX</p>
+      </div>
+    </div>
+    <p id="hero-live-flag" class="hidden mt-4 text-[11px] text-dim font-mono">· données en direct</p>
+  </div>
+</section>
+
+<div class="road-line max-w-6xl mx-auto"></div>
+
+<!-- ESPACES -->
+<section id="espaces" class="max-w-6xl mx-auto px-5 py-16">
+  <h2 class="text-2xl font-semibold tracking-tight">Trois espaces, une seule plateforme</h2>
+  <p class="text-dim mt-2 max-w-lg">Chaque profil retrouve exactement ce dont il a besoin, rien de plus.</p>
+
+  <div class="mt-8 flex gap-2 border-b border-line" role="tablist" aria-label="Espaces Bouadigital">
+    <button data-tab="chauffeur" class="tab-btn px-4 py-2.5 text-sm font-medium border-b-2 border-amber text-ink focus-ring" role="tab" aria-selected="true">App Chauffeur</button>
+    <button data-tab="client" class="tab-btn px-4 py-2.5 text-sm font-medium border-b-2 border-transparent text-dim hover:text-ink focus-ring" role="tab" aria-selected="false">Portail Client</button>
+    <button data-tab="admin" class="tab-btn px-4 py-2.5 text-sm font-medium border-b-2 border-transparent text-dim hover:text-ink focus-ring" role="tab" aria-selected="false">Espace Admin</button>
+  </div>
+
+  <div class="mt-8">
+    <div data-panel="chauffeur" class="tabpane grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <h3 class="font-semibold text-lg">Missions et e-CMR en poche</h3>
+        <p class="text-dim mt-3 leading-relaxed">L'application Android affiche la mission en cours, le trajet, et permet de remplir la lettre de voiture directement depuis le camion, même hors connexion.</p>
+        <ul class="mt-4 space-y-2 text-sm text-dim">
+          <li>Feuille de route et documents de fret</li>
+          <li>Signature client et photo de livraison</li>
+          <li>Partage automatique de la position GPS</li>
+        </ul>
+      </div>
+      <div class="bg-panel border border-line rounded-xl p-5 font-mono text-sm">
+        <p class="text-dim text-xs mb-3">Mission active</p>
+        <p>Toledo → Bamako</p>
+        <p class="text-dim mt-1">18,4 t · Remorque frigo</p>
+        <div class="mt-4 h-px bg-line"></div>
+        <p class="mt-4 text-dim text-xs">Prochaine étape</p>
+        <p>Douane Algésiras · 06:30</p>
+      </div>
+    </div>
+
+    <div data-panel="client" class="tabpane hidden grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <h3 class="font-semibold text-lg">Suivre son colis, sans appeler personne</h3>
+        <p class="text-dim mt-3 leading-relaxed">Le client entre son numéro de suivi et voit la position en direct, l'historique du trajet et peut télécharger sa lettre de voiture dès qu'elle est signée.</p>
+        <ul class="mt-4 space-y-2 text-sm text-dim">
+          <li>Suivi GPS en temps réel</li>
+          <li>e-CMR téléchargeable en PDF</li>
+          <li>Notifications par email aux étapes clés</li>
+        </ul>
+      </div>
+      <div class="bg-panel border border-line rounded-xl p-5 font-mono text-sm">
+        <p class="text-dim text-xs mb-3">Suivi expédition</p>
+        <p>CMR-2026-08841</p>
+        <p class="text-emerald mt-1">En route — à l'heure</p>
+        <div class="mt-4 h-px bg-line"></div>
+        <p class="mt-4 text-dim text-xs">Dernière mise à jour</p>
+        <p>Il y a 6 min</p>
+      </div>
+    </div>
+
+    <div data-panel="admin" class="tabpane hidden grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <h3 class="font-semibold text-lg">Toute la flotte, une vue</h3>
+        <p class="text-dim mt-3 leading-relaxed">Accès protégé par mot de passe : gestion des commandes, des chauffeurs, des devis reçus et du bourse de fret, avec recherche assistée par IA.</p>
+        <ul class="mt-4 space-y-2 text-sm text-dim">
+          <li>Tableau de bord des livraisons en cours</li>
+          <li>Gestion des candidatures et du recrutement</li>
+          <li>Historique des devis et export</li>
+        </ul>
+      </div>
+      <div class="bg-panel border border-line rounded-xl p-5">
+        <form id="admin-login-form" class="space-y-3">
+          <p class="text-dim text-xs font-mono">Accès sécurisé</p>
+          <input type="email" required placeholder="Email" class="w-full bg-transparent border border-line rounded-md px-3 py-2 text-sm focus-ring placeholder:text-dim" />
+          <input type="password" required placeholder="Mot de passe" class="w-full bg-transparent border border-line rounded-md px-3 py-2 text-sm focus-ring placeholder:text-dim" />
+          <button type="submit" class="w-full text-sm bg-amber text-bg font-medium rounded-md py-2 hover:brightness-110 transition focus-ring">Se connecter</button>
+          <p id="admin-login-error" class="hidden text-xs text-amber"></p>
+        </form>
+        <div id="admin-stats" class="hidden font-mono text-sm">
+          <p class="text-dim text-xs mb-1">Flotte active</p>
+          <p><span id="admin-truck-count">7</span> camions · <span id="admin-mission-count">12</span> missions</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- E-CMR -->
+<section id="ecmr" class="max-w-6xl mx-auto px-5 py-16 grid md:grid-cols-[1fr_1.1fr] gap-10 items-center">
+  <div class="bg-panel border border-line rounded-xl p-6 font-mono text-xs leading-relaxed order-2 md:order-1">
+    <p class="text-dim">LETTRE DE VOITURE — e-CMR</p>
+    <div class="mt-4 h-px bg-line"></div>
+    <p class="mt-4 text-dim">1. Expéditeur</p>
+    <p>BOUA Trans — Yuncos, Toledo</p>
+    <p class="mt-3 text-dim">2. Destinataire</p>
+    <p>—</p>
+    <p class="mt-3 text-dim">16. Transporteur</p>
+    <p>BOUA Trans SL</p>
+    <p class="mt-3 text-dim">23. Signature</p>
+    <p class="text-dim">en attente</p>
+  </div>
+  <div class="order-1 md:order-2">
+    <h2 class="text-2xl font-semibold tracking-tight">e-CMR, vierge ou remplie</h2>
+    <p class="text-dim mt-3 leading-relaxed max-w-md">Générez une lettre de voiture vierge à imprimer, ou laissez le chauffeur la remplir depuis l'application : elle est ensuite disponible au client en un clic, sans papier perdu.</p>
+    <div class="mt-6 flex flex-wrap gap-3">
+      <a href="#" class="text-sm border border-line px-4 py-2.5 rounded-md hover:border-dim transition focus-ring">Télécharger un e-CMR vierge</a>
+      <a href="#suivi" class="text-sm border border-line px-4 py-2.5 rounded-md hover:border-dim transition focus-ring">Voir un e-CMR rempli</a>
+    </div>
+  </div>
+</section>
+
+<div class="road-line max-w-6xl mx-auto"></div>
+
+<!-- SUIVI GPS -->
+<section id="suivi" class="max-w-6xl mx-auto px-5 py-16">
+  <h2 class="text-2xl font-semibold tracking-tight">Géolocalisation en temps réel</h2>
+  <p class="text-dim mt-2 max-w-lg">Chaque camion transmet sa position pendant le trajet ; client et administrateur voient la même carte, au même moment.</p>
+  <div class="mt-8 bg-panel border border-line rounded-xl p-6">
+    <div class="relative h-10">
+      <div class="road-line absolute left-0 right-0 top-1/2"></div>
+      <div class="absolute top-1/2 -translate-y-1/2" style="left:6%"><div class="w-2.5 h-2.5 rounded-full bg-ink"></div></div>
+      <div class="absolute top-1/2 -translate-y-1/2" style="left:34%"><div class="w-2.5 h-2.5 rounded-full bg-ink"></div></div>
+      <div class="absolute top-1/2 -translate-y-1/2 dot-run"><div class="w-3.5 h-3.5 rounded-full bg-amber"></div></div>
+      <div class="absolute top-1/2 -translate-y-1/2" style="left:92%"><div class="w-2.5 h-2.5 rounded-full bg-ink"></div></div>
+    </div>
+    <div class="mt-5 flex justify-between text-xs text-dim font-mono">
+      <span>Toledo</span><span>Madrid</span><span>Algésiras</span><span>Bamako</span>
+    </div>
+  </div>
+</section>
+
+<div class="road-line max-w-6xl mx-auto"></div>
+
+<!-- KIT DIGITAL COMPLET -->
+<section id="kit" class="max-w-6xl mx-auto px-5 py-16">
+  <h2 class="text-2xl font-semibold tracking-tight">Un kit digital complet</h2>
+  <p class="text-dim mt-2 max-w-lg">Dix briques qui couvrent la présence en ligne, la relation client et la sécurité de l'entreprise, pas seulement le transport.</p>
+  <div class="mt-8 grid md:grid-cols-2">
+    <div class="border-t border-line py-5 pr-8">
+      <h3 class="font-medium">Présence en ligne</h3>
+      <p class="text-dim text-sm mt-1.5 leading-relaxed">Cette plateforme elle-même : vitrine, portail client et référencement.</p>
+    </div>
+    <div class="border-t border-line py-5 md:pl-8">
+      <h3 class="font-medium">Réseaux sociaux</h3>
+      <p class="text-dim text-sm mt-1.5 leading-relaxed">Publication automatique des trajets disponibles et des offres de fret.</p>
+    </div>
+    <div class="border-t border-line py-5 pr-8">
+      <h3 class="font-medium">Gestion clients (CRM)</h3>
+      <p class="text-dim text-sm mt-1.5 leading-relaxed">Historique des expéditions, préférences et relances de devis automatiques.</p>
+    </div>
+    <div class="border-t border-line py-5 md:pl-8">
+      <h3 class="font-medium">Business Intelligence</h3>
+      <p class="text-dim text-sm mt-1.5 leading-relaxed">Tableaux de bord de ponctualité, kilométrage et émissions CO₂.</p>
+    </div>
+    <div class="border-t border-line py-5 pr-8">
+      <h3 class="font-medium">Gestion des processus</h3>
+      <p class="text-dim text-sm mt-1.5 leading-relaxed">Attribution automatique des missions au chauffeur le plus proche.</p>
+    </div>
+    <div class="border-t border-line py-5 md:pl-8">
+      <h3 class="font-medium">Facturation électronique</h3>
+      <p class="text-dim text-sm mt-1.5 leading-relaxed">Devis, factures et suivi de paiement générés sans ressaisie.</p>
+    </div>
+    <div class="border-t border-line py-5 pr-8">
+      <h3 class="font-medium">Communications sécurisées</h3>
+      <p class="text-dim text-sm mt-1.5 leading-relaxed">Messagerie chiffrée entre chauffeur, client et administration.</p>
+    </div>
+    <div class="border-t border-line py-5 md:pl-8">
+      <h3 class="font-medium">Cybersécurité</h3>
+      <p class="text-dim text-sm mt-1.5 leading-relaxed">Accès protégé, sauvegardes régulières, conformité RGPD.</p>
+    </div>
+    <div class="border-t border-b border-line py-5 pr-8">
+      <h3 class="font-medium">Bourse de fret (marketplace)</h3>
+      <p class="text-dim text-sm mt-1.5 leading-relaxed">Mise en relation avec des transporteurs partenaires pour le retour à vide.</p>
+    </div>
+    <div class="border-t border-b border-line py-5 md:pl-8">
+      <h3 class="font-medium">Assistant IA</h3>
+      <p class="text-dim text-sm mt-1.5 leading-relaxed">Optimisation d'itinéraire, prévision d'ETA et recherche en langage naturel.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ASSISTANT IA -->
+<section id="ia" class="max-w-6xl mx-auto px-5 py-16 grid md:grid-cols-[1fr_1.1fr] gap-10 items-center">
+  <div class="bg-panel border border-line rounded-xl p-5 font-mono text-xs">
+    <p class="text-dim mb-4">Assistant Bouadigital</p>
+    <div class="space-y-3">
+      <p class="text-dim">Vous · trouve-moi un retour Bamako → Toledo cette semaine</p>
+      <p>IA · 2 offres compatibles, 14t et 9t, départ mercredi</p>
+      <p class="text-dim">Vous · quel est l'ETA du CMR-2026-08841 ?</p>
+      <p>IA · Arrivée estimée dans 2j 04h, trafic Algésiras inclus</p>
+    </div>
+  </div>
+  <div>
+    <h2 class="text-2xl font-semibold tracking-tight">Un assistant qui connaît la route</h2>
+    <p class="text-dim mt-3 leading-relaxed max-w-md">L'IA lit les positions en direct et l'historique des trajets pour répondre en langage naturel, sans passer par un formulaire de recherche.</p>
+    <ul class="mt-4 space-y-2 text-sm text-dim">
+      <li>Optimisation d'itinéraire selon trafic et douane</li>
+      <li>Prévision d'ETA recalculée en continu</li>
+      <li>Recherche de fret disponible en une phrase</li>
+    </ul>
+  </div>
+</section>
+
+<div class="road-line max-w-6xl mx-auto"></div>
+
+<!-- BOURSE DE FRET -->
+<section id="fret" class="max-w-6xl mx-auto px-5 py-16">
+  <h2 class="text-2xl font-semibold tracking-tight">Bourse de fret</h2>
+  <p class="text-dim mt-2 max-w-lg">Les retours à vide deviennent des trajets rentables, partagés entre transporteurs partenaires.</p>
+  <div class="mt-8 bg-panel border border-line rounded-xl overflow-hidden">
+    <div class="grid grid-cols-4 text-xs text-dim px-5 py-3 border-b border-line font-mono">
+      <span>Trajet</span><span>Poids</span><span>Départ</span><span>Prix</span>
+    </div>
+    <div id="fret-rows">
+      <div class="grid grid-cols-4 items-center px-5 py-3.5 border-b border-line text-sm font-mono">
+        <span>Madrid → Dakar</span><span>14 t</span><span>Mer. 17/09</span><span class="text-emerald">840 €</span>
+      </div>
+      <div class="grid grid-cols-4 items-center px-5 py-3.5 border-b border-line text-sm font-mono">
+        <span>Bamako → Toledo</span><span>9 t</span><span>Jeu. 18/09</span><span class="text-emerald">610 €</span>
+      </div>
+      <div class="grid grid-cols-4 items-center px-5 py-3.5 text-sm font-mono">
+        <span>Séville → Bamako</span><span>22 t</span><span>Ven. 19/09</span><span class="text-emerald">1 120 €</span>
+      </div>
+    </div>
+  </div>
+  <p id="fret-live-flag" class="hidden mt-3 text-[11px] text-dim font-mono">· offres mises à jour en direct</p>
+</section>
+
+<!-- ANALYTIQUE -->
+<section id="analytique" class="max-w-6xl mx-auto px-5 py-16">
+  <h2 class="text-2xl font-semibold tracking-tight">Analytique & pilotage</h2>
+  <p class="text-dim mt-2 max-w-lg">Les indicateurs de flotte, en un coup d'œil, pour l'espace administrateur.</p>
+  <div class="mt-8 bg-panel border border-line rounded-xl grid grid-cols-2 md:grid-cols-4 divide-x divide-line">
+    <div class="p-6">
+      <p id="kpi-ontime" class="text-2xl font-mono">96%</p>
+      <p class="text-dim text-xs mt-1">Livraisons à l'heure</p>
+    </div>
+    <div class="p-6">
+      <p id="kpi-km" class="text-2xl font-mono">18 420</p>
+      <p class="text-dim text-xs mt-1">Km ce mois-ci</p>
+    </div>
+    <div class="p-6">
+      <p id="kpi-co2" class="text-2xl font-mono">4,2 t</p>
+      <p class="text-dim text-xs mt-1">CO₂ évité (retours groupés)</p>
+    </div>
+    <div class="p-6">
+      <p id="kpi-occupation" class="text-2xl font-mono">83%</p>
+      <p class="text-dim text-xs mt-1">Taux d'occupation flotte</p>
+    </div>
+  </div>
+</section>
+
+<div class="road-line max-w-6xl mx-auto"></div>
+
+<!-- FACTURATION -->
+<section id="facturation" class="max-w-6xl mx-auto px-5 py-16 grid md:grid-cols-[1fr_1.1fr] gap-10 items-center">
+  <div class="bg-panel border border-line rounded-xl p-6 font-mono text-xs leading-relaxed order-2 md:order-1">
+    <p class="text-dim">FACTURE — BT-2026-0412</p>
+    <div class="mt-4 h-px bg-line"></div>
+    <p class="mt-4">Transport Toledo → Bamako</p>
+    <p class="text-dim mt-1">18,4 t · e-CMR CMR-2026-08841</p>
+    <div class="mt-4 h-px bg-line"></div>
+    <p class="mt-4 text-dim">Total</p>
+    <p class="text-emerald">1 240,00 €</p>
+    <p class="mt-3 text-dim">Statut</p>
+    <p>Payée</p>
+  </div>
+  <div class="order-1 md:order-2">
+    <h2 class="text-2xl font-semibold tracking-tight">Facturation électronique</h2>
+    <p class="text-dim mt-3 leading-relaxed max-w-md">Chaque mission livrée génère automatiquement sa facture, reliée au devis et à l'e-CMR signé. Export comptable en un clic.</p>
+    <ul class="mt-4 space-y-2 text-sm text-dim">
+      <li>Génération automatique à la livraison</li>
+      <li>Suivi des paiements en attente</li>
+      <li>Export compatible avec la comptabilité</li>
+    </ul>
+  </div>
+</section>
+
+<!-- MESSAGERIE SECURISEE -->
+<section id="messagerie" class="max-w-6xl mx-auto px-5 py-16 grid md:grid-cols-[1fr_1.1fr] gap-10 items-center">
+  <div class="bg-panel border border-line rounded-xl p-5 font-mono text-xs flex flex-col h-64">
+    <p class="text-dim mb-3">CMR-2026-08841 · discussion</p>
+    <div id="chat-messages" class="flex-1 overflow-y-auto space-y-2.5">
+      <p class="text-dim">Admin · document e-CMR signé, envoi en cours</p>
+      <p>Client · merci, je surveille le suivi GPS</p>
+    </div>
+    <form id="chat-form" class="mt-3 flex gap-2">
+      <input id="chat-input" type="text" placeholder="Écrire un message…" class="flex-1 bg-transparent border border-line rounded-md px-3 py-2 text-xs focus-ring placeholder:text-dim" />
+      <button type="submit" class="text-xs border border-line rounded-md px-3 hover:border-dim transition focus-ring">Envoyer</button>
+    </form>
+  </div>
+  <div>
+    <h2 class="text-2xl font-semibold tracking-tight">Communications sécurisées</h2>
+    <p class="text-dim mt-3 leading-relaxed max-w-md">Chauffeur, client et administration échangent sur le même fil, rattaché à l'expédition — rien ne se perd dans les emails ou WhatsApp.</p>
+    <div class="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-xs text-dim font-mono">
+      <span>Chiffrement AES-256</span>
+      <span>Authentification à deux facteurs</span>
+      <span>Sauvegardes quotidiennes</span>
+      <span>Conforme RGPD</span>
+    </div>
+  </div>
+</section>
+
+<!-- DEVIS -->
+<section id="devis" class="max-w-6xl mx-auto px-5 pb-20">
+  <div class="bg-brand rounded-xl px-8 py-10">
+    <div class="md:flex items-start justify-between gap-8">
+      <div>
+        <h2 class="text-2xl font-semibold tracking-tight">Un devis en moins de deux minutes</h2>
+        <p class="text-blue-100/80 mt-2 max-w-md">Trajet, poids, type de marchandise : le tarif s'affiche immédiatement, sans appel ni attente.</p>
+        <a href="mailto:bouayuncos@gmail.com" class="mt-5 inline-block text-sm text-blue-100/80 hover:text-white transition focus-ring">ou écrire directement à bouayuncos@gmail.com</a>
+      </div>
+      <form id="devis-form" class="mt-6 md:mt-0 grid grid-cols-2 gap-3 w-full md:w-96 shrink-0">
+        <input required name="depart" type="text" placeholder="Ville de départ" class="col-span-1 bg-white/10 border border-white/20 rounded-md px-3 py-2.5 text-sm text-white placeholder:text-blue-100/60 focus-ring" />
+        <input required name="arrivee" type="text" placeholder="Ville d'arrivée" class="col-span-1 bg-white/10 border border-white/20 rounded-md px-3 py-2.5 text-sm text-white placeholder:text-blue-100/60 focus-ring" />
+        <input required name="poids" type="text" placeholder="Poids (t)" class="col-span-1 bg-white/10 border border-white/20 rounded-md px-3 py-2.5 text-sm text-white placeholder:text-blue-100/60 focus-ring" />
+        <input required name="marchandise" type="text" placeholder="Marchandise" class="col-span-1 bg-white/10 border border-white/20 rounded-md px-3 py-2.5 text-sm text-white placeholder:text-blue-100/60 focus-ring" />
+        <input required name="contact" type="email" placeholder="Votre email" class="col-span-2 bg-white/10 border border-white/20 rounded-md px-3 py-2.5 text-sm text-white placeholder:text-blue-100/60 focus-ring" />
+        <button type="submit" class="col-span-2 bg-amber text-bg font-medium px-6 py-2.5 rounded-md hover:brightness-110 transition focus-ring">Démarrer un devis</button>
+        <p id="devis-confirm" class="hidden col-span-2 text-sm text-emerald">Demande envoyée — réponse sous 24h.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="border-t border-line">
+  <div class="max-w-6xl mx-auto px-5 py-10 text-sm text-dim flex flex-col md:flex-row justify-between gap-4">
+    <div>
+      <p class="text-ink font-medium">BOUA Trans</p>
+      <p class="mt-1">Avenida Castilla-La Mancha 122, 45210 Yuncos</p>
+      <p>+34 745 00 66 75 · bouayuncos@gmail.com</p>
+    </div>
+    <div class="flex flex-col items-start md:items-end gap-2">
+      <div class="flex items-center gap-4">
+        <a href="#" class="hover:text-ink transition-colors focus-ring">Facebook</a>
+        <a href="#" class="hover:text-ink transition-colors focus-ring">LinkedIn</a>
+        <a href="#" class="hover:text-ink transition-colors focus-ring">WhatsApp</a>
+      </div>
+      <p>Bouadigital — module transport & logistique</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const i18n = {
+    fr: { espaces:'Espaces', kit:'Fonctionnalités', ia:'Assistant IA', fret:'Bourse de fret', suivi:'Suivi GPS', devis:'Devis', cta:'Demander un devis',
+      h1a:"Le fret voyage,", h1b:"vous suivez chaque kilomètre.",
+      sub:"Bouadigital relie chauffeurs, clients et gestion de flotte sur une seule plateforme : lettres de voiture e-CMR, position GPS en direct et devis en quelques secondes." },
+    es: { espaces:'Espacios', kit:'Funciones', ia:'Asistente IA', fret:'Bolsa de carga', suivi:'Seguimiento GPS', devis:'Presupuesto', cta:'Pedir presupuesto',
+      h1a:"La carga viaja,", h1b:"tú sigues cada kilómetro.",
+      sub:"Bouadigital conecta conductores, clientes y gestión de flota en una sola plataforma: cartas de porte e-CMR, posición GPS en directo y presupuesto en segundos." }
+  };
+  const langBtn = document.getElementById('lang-toggle');
+  const navLinks = document.querySelectorAll('header nav a');
+  const ctaBtns = document.querySelectorAll('a[href="#devis"].bg-amber');
+  const h1 = document.querySelector('h1');
+  const heroSub = document.querySelector('h1')?.parentElement.querySelector('p.text-dim');
+  langBtn?.addEventListener('click', () => {
+    const next = langBtn.dataset.lang === 'fr' ? 'es' : 'fr';
+    langBtn.dataset.lang = next;
+    const t = i18n[next];
+    const keys = ['espaces','kit','ia','fret','suivi','devis'];
+    navLinks.forEach((a,i) => { if (t[keys[i]]) a.textContent = t[keys[i]]; });
+    ctaBtns.forEach(a => a.textContent = t.cta);
+    if (h1) h1.innerHTML = `${t.h1a}<br class="hidden md:block"> ${t.h1b}`;
+    if (heroSub) heroSub.textContent = t.sub;
+    document.documentElement.lang = next;
+  });
+
+  const btns = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('[data-panel]');
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => { b.classList.remove('border-amber','text-ink'); b.classList.add('border-transparent','text-dim'); b.setAttribute('aria-selected','false'); });
+      btn.classList.add('border-amber','text-ink'); btn.classList.remove('border-transparent','text-dim'); btn.setAttribute('aria-selected','true');
+      panels.forEach(p => p.classList.add('hidden'));
+      document.querySelector(`[data-panel="${btn.dataset.tab}"]`).classList.remove('hidden');
+    });
+  });
+</script>
+
+<!-- ===================================================================
+     FIREBASE — remplacer les valeurs ci-dessous par la config du projet
+     (Console Firebase > Paramètres du projet > Vos applications > SDK).
+     Réutiliser le projet `boua-trans` si ce module doit partager les
+     mêmes données (devis, commandes) que le site BOUA Trans.
+     Tant que apiKey vaut "REPLACE_ME", la page reste en mode démo
+     (aucun appel réseau, contenu statique affiché ci-dessus).
+     =================================================================== -->
+<script>
+  const firebaseConfig = {
+    apiKey: "REPLACE_ME",
+    authDomain: "REPLACE_ME.firebaseapp.com",
+    projectId: "REPLACE_ME",
+    storageBucket: "REPLACE_ME.appspot.com",
+    messagingSenderId: "REPLACE_ME",
+    appId: "REPLACE_ME"
+  };
+
+  const isConfigured = firebaseConfig.apiKey !== "REPLACE_ME";
+  let db, auth;
+
+  if (isConfigured) {
+    firebase.initializeApp(firebaseConfig);
+    db = firebase.firestore();
+    auth = firebase.auth();
+    initRealtime();
+  } else {
+    console.info("Bouadigital : mode démo — ajoutez votre config Firebase pour activer le temps réel.");
+  }
+
+  function initRealtime() {
+    const cmrRef = "CMR-2026-08841";
+
+    // Suivi d'expédition en direct (hero + section suivi)
+    db.collection("expeditions").doc(cmrRef).onSnapshot(doc => {
+      if (!doc.exists) return;
+      const d = doc.data();
+      document.getElementById("hero-status").textContent = d.status || "En route";
+      document.getElementById("hero-position").textContent = d.position || "—";
+      document.getElementById("hero-eta").textContent = d.eta || "—";
+      document.getElementById("hero-driver").textContent = d.driver || "—";
+      document.getElementById("hero-trailer").textContent = d.trailer || "—";
+      document.getElementById("hero-live-flag").classList.remove("hidden");
+    }, () => {});
+
+    // Bourse de fret en direct
+    db.collection("fret").orderBy("depart").limit(8).onSnapshot(snap => {
+      if (snap.empty) return;
+      const rows = document.getElementById("fret-rows");
+      rows.innerHTML = "";
+      snap.forEach((doc, i) => {
+        const d = doc.data();
+        const last = i === snap.size - 1;
+        const row = document.createElement("div");
+        row.className = `grid grid-cols-4 items-center px-5 py-3.5 ${last ? "" : "border-b border-line"} text-sm font-mono`;
+        row.innerHTML = `<span>${d.trajet}</span><span>${d.poids}</span><span>${d.depart}</span><span class="text-emerald">${d.prix}</span>`;
+        rows.appendChild(row);
+      });
+      document.getElementById("fret-live-flag").classList.remove("hidden");
+    }, () => {});
+
+    // Indicateurs analytiques en direct
+    db.collection("missions").where("status", "==", "active").onSnapshot(snap => {
+      document.getElementById("admin-mission-count").textContent = snap.size;
+    }, () => {});
+    db.collection("flotte").onSnapshot(snap => {
+      document.getElementById("admin-truck-count").textContent = snap.size;
+      const occ = snap.docs.filter(d => d.data().status === "en_mission").length;
+      if (snap.size) document.getElementById("kpi-occupation").textContent = Math.round((occ / snap.size) * 100) + "%";
+    }, () => {});
+
+    // Messagerie sécurisée (fil lié à l'expédition)
+    db.collection("expeditions").doc(cmrRef).collection("messages").orderBy("createdAt").onSnapshot(snap => {
+      const box = document.getElementById("chat-messages");
+      box.innerHTML = "";
+      snap.forEach(doc => {
+        const d = doc.data();
+        const p = document.createElement("p");
+        p.className = d.role === "client" ? "" : "text-dim";
+        p.textContent = `${d.author} · ${d.text}`;
+        box.appendChild(p);
+      });
+      box.scrollTop = box.scrollHeight;
+    }, () => {});
+
+    // Connexion admin (Firebase Auth)
+    document.getElementById("admin-login-form").addEventListener("submit", e => {
+      e.preventDefault();
+      const [email, password] = e.target.querySelectorAll("input");
+      const errEl = document.getElementById("admin-login-error");
+      auth.signInWithEmailAndPassword(email.value, password.value)
+        .then(() => {
+          e.target.classList.add("hidden");
+          document.getElementById("admin-stats").classList.remove("hidden");
+        })
+        .catch(err => {
+          errEl.textContent = "Connexion refusée — vérifiez vos identifiants.";
+          errEl.classList.remove("hidden");
+        });
+    });
+  }
+
+  // Formulaire de devis — écrit toujours, même en mode démo (file d'attente locale sinon)
+  document.getElementById("devis-form").addEventListener("submit", e => {
+    e.preventDefault();
+    const f = e.target;
+    const payload = {
+      depart: f.depart.value, arrivee: f.arrivee.value, poids: f.poids.value,
+      marchandise: f.marchandise.value, contact: f.contact.value,
+      createdAt: isConfigured ? firebase.firestore.FieldValue.serverTimestamp() : new Date().toISOString()
+    };
+    (isConfigured ? db.collection("devis").add(payload) : Promise.resolve()).finally(() => {
+      f.classList.add("hidden");
+      document.getElementById("devis-confirm").classList.remove("hidden");
+    });
+  });
+
+  // Messagerie — envoi (écrit si connecté, sinon affiche localement)
+  document.getElementById("chat-form").addEventListener("submit", e => {
+    e.preventDefault();
+    const input = document.getElementById("chat-input");
+    if (!input.value.trim()) return;
+    if (isConfigured) {
+      db.collection("expeditions").doc("CMR-2026-08841").collection("messages").add({
+        author: "Vous", role: "client", text: input.value.trim(),
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      });
+    } else {
+      const box = document.getElementById("chat-messages");
+      const p = document.createElement("p");
+      p.textContent = `Vous · ${input.value.trim()}`;
+      box.appendChild(p);
+      box.scrollTop = box.scrollHeight;
+    }
+    input.value = "";
+  });
+</script>
+
+<!-- ===================================================================
+     INSTALLATION — Android/Chrome/Edge/desktop via beforeinstallprompt,
+     iOS via instructions (Safari ne propose pas d'invite native).
+     =================================================================== -->
+<script>
+  const installBtn = document.getElementById("install-btn");
+  const iosSheet = document.getElementById("ios-install-sheet");
+  let deferredPrompt = null;
+
+  const isStandalone = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
+  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
+
+  if (!isStandalone) {
+    if (isIOS) {
+      installBtn.classList.remove("hidden");
+      installBtn.classList.add("inline-flex");
+    } else {
+      window.addEventListener("beforeinstallprompt", e => {
+        e.preventDefault();
+        deferredPrompt = e;
+        installBtn.classList.remove("hidden");
+        installBtn.classList.add("inline-flex");
+      });
+    }
+  }
+
+  installBtn?.addEventListener("click", async () => {
+    if (isIOS) {
+      iosSheet.classList.remove("hidden");
+      return;
+    }
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    deferredPrompt = null;
+    installBtn.classList.add("hidden");
+  });
+
+  document.getElementById("ios-install-close").addEventListener("click", () => iosSheet.classList.add("hidden"));
+  iosSheet.addEventListener("click", e => { if (e.target === iosSheet) iosSheet.classList.add("hidden"); });
+
+  window.addEventListener("appinstalled", () => installBtn.classList.add("hidden"));
+
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
+  }
+</script>
+</body>
+</html>
