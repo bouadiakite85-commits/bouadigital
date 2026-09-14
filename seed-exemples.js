@@ -28,12 +28,9 @@
 }
 
 // Collection: missions — un document par mission
+// "date" (jour) et "month" (AAAA-MM) servent au calcul des "jours actifs ce mois"
 {
-  "status": "active"
-}
-
-// Collection: flotte — un document par camion
-{
-  "immatriculation": "TL-4471-BX",
-  "status": "en_mission"
+  "status": "active",
+  "date": "2026-09-14",
+  "month": "2026-09"
 }
